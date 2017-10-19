@@ -1,34 +1,26 @@
 windowPositionCalculationRegistry.registerWindowPositionCalculationWithAction(function (windowRect, visibleFrameOfSourceScreen, visibleFrameOfDestinationScreen) {
-    var oneHalfRect = SpectacleCalculationHelpers.copyRect(visibleFrameOfDestinationScreen);
-    oneHalfRect.width = Math.floor(oneHalfRect.width / 2.0);
-    if (Math.abs(CGRectGetMidY(windowRect) - CGRectGetMidY(oneHalfRect)) <= 1.0) {
-        var oneThirdsRect = SpectacleCalculationHelpers.copyRect(oneHalfRect);
-        oneThirdsRect.width = Math.floor(visibleFrameOfDestinationScreen.width / 3.0);
+    var sizes = [
+        1 / 2,
+        2 / 3,
+        3 / 4,
+        1 / 4,
+        1 / 3,
+    ];
                                                                               
-        var twoThirdsRect = SpectacleCalculationHelpers.copyRect(oneThirdsRect);
-        twoThirdsRect.width = Math.floor(visibleFrameOfDestinationScreen.width * 2 / 3.0);
-
-        var threeQuartersRect = SpectacleCalculationHelpers.copyRect(oneHalfRect);
-        threeQuartersRect.width = Math.floor(visibleFrameOfDestinationScreen.width * 3.0 / 4.0);
-
-        var oneQuartersRect = SpectacleCalculationHelpers.copyRect(oneHalfRect);
-        oneQuartersRect.width = Math.floor(visibleFrameOfDestinationScreen.width / 4.0);
-                                                                              
-        if (SpectacleCalculationHelpers.rectCenteredWithinRect(oneHalfRect, windowRect)) {
-            return twoThirdsRect;
-        }
-                                                                              
-        if (SpectacleCalculationHelpers.rectCenteredWithinRect(twoThirdsRect, windowRect)) {
-            return threeQuartersRect;
-        }
-
-        if (SpectacleCalculationHelpers.rectCenteredWithinRect(threeQuartersRect, windowRect)) {
-            return oneQuartersRect;
-        }
-                                                                              
-        if (SpectacleCalculationHelpers.rectCenteredWithinRect(oneQuartersRect, windowRect)) {
-            return oneThirdsRect;
+    var boxes = [];
+    for (var i = 0, l = sizes.length; i < l; i++) {
+        var box = SpectacleCalculationHelpers.copyRect(visibleFrameOfDestinationScreen);
+        box.width = Math.floor(visibleFrameOfDestinationScreen.width * sizes[i]);
+        boxes.push(box);
+    }
+    
+    if (Math.abs(CGRectGetMidY(windowRect) - CGRectGetMidY(boxes[0])) <= 1.0) {
+        for (var i = 0, l = boxes.length; i < l; i++) {
+            if (SpectacleCalculationHelpers.rectCenteredWithinRect(boxes[i], windowRect)) {
+                return i < l - 1 ? boxes[i + 1] : boxes[0];
+            }
         }
     }
-    return oneHalfRect;
+    
+    return boxes[0];
 }, "SpectacleWindowActionLeftHalf");

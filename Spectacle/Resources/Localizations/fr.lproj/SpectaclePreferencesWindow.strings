@@ -8,16 +8,16 @@
 /* Class = "NSTextFieldCell"; title = "⌃"; ObjectID = "806-S1-nYH"; */
 "806-S1-nYH.title" = "⌃";
 
-/* Class = "NSTextFieldCell"; title = "Top Half:"; ObjectID = "AnP-Lv-Hbd"; */
+/* Class = "NSTextFieldCell"; title = "Top:"; ObjectID = "AnP-Lv-Hbd"; */
 "AnP-Lv-Hbd.title" = "Moitié haut:";
 
-/* Class = "NSTextFieldCell"; title = "Bottom Half:"; ObjectID = "Awn-mO-sht"; */
+/* Class = "NSTextFieldCell"; title = "Bottom:"; ObjectID = "Awn-mO-sht"; */
 "Awn-mO-sht.title" = "Moitié bas:";
 
 /* Class = "NSTextFieldCell"; title = "Undo:"; ObjectID = "CJs-az-eG7"; */
 "CJs-az-eG7.title" = "Annuler:";
 
-/* Class = "NSTextFieldCell"; title = "Left Half:"; ObjectID = "IWj-rc-Kvi"; */
+/* Class = "NSTextFieldCell"; title = "Left:"; ObjectID = "IWj-rc-Kvi"; */
 "IWj-rc-Kvi.title" = "Moitié gauche:";
 
 /* Class = "NSTextFieldCell"; title = "⇧"; ObjectID = "Ir0-AJ-ldj"; */
@@ -47,7 +47,7 @@
 /* Class = "NSMenu"; title = "OtherViews"; ObjectID = "W2t-KP-bYJ"; */
 "W2t-KP-bYJ.title" = "OtherViews";
 
-/* Class = "NSTextFieldCell"; title = "Right Half:"; ObjectID = "WeK-fS-mRh"; */
+/* Class = "NSTextFieldCell"; title = "Right:"; ObjectID = "WeK-fS-mRh"; */
 "WeK-fS-mRh.title" = "Moitié droit:";
 
 /* Class = "NSTextFieldCell"; title = "⌥"; ObjectID = "YQm-Kc-fYF"; */

@@ -1,19 +1,28 @@
 windowPositionCalculationRegistry.registerWindowPositionCalculationWithAction(function (windowRect, visibleFrameOfSourceScreen, visibleFrameOfDestinationScreen) {
-    var oneQuarterRect = SpectacleCalculationHelpers.copyRect(visibleFrameOfDestinationScreen);
-    oneQuarterRect.width = Math.floor(visibleFrameOfDestinationScreen.width / 2.0);
-    oneQuarterRect.height = Math.floor(visibleFrameOfDestinationScreen.height / 2.0);
-    oneQuarterRect.y = visibleFrameOfDestinationScreen.y + Math.floor(visibleFrameOfDestinationScreen.height / 2.0) + (visibleFrameOfDestinationScreen.height % 2.0);
-    if (Math.abs(CGRectGetMidY(windowRect) - CGRectGetMidY(oneQuarterRect)) <= 1.0) {
-        var twoThirdRect = SpectacleCalculationHelpers.copyRect(oneQuarterRect);
-        twoThirdRect.width = Math.floor(visibleFrameOfDestinationScreen.width * 2 / 3.0);
-        if (SpectacleCalculationHelpers.rectCenteredWithinRect(oneQuarterRect, windowRect)) {
-            return twoThirdRect;
-        }
-        if (SpectacleCalculationHelpers.rectCenteredWithinRect(twoThirdRect, windowRect)) {
-            var oneThirdsRect = SpectacleCalculationHelpers.copyRect(oneQuarterRect);
-            oneThirdsRect.width = Math.floor(visibleFrameOfDestinationScreen.width / 3.0);
-            return oneThirdsRect;
+    var sizes = [
+                 1 / 2,
+                 2 / 3,
+                 3 / 4,
+                 1 / 4,
+                 1 / 3,
+                 ];
+    
+    var boxes = [];
+    for (var i = 0, l = sizes.length; i < l; i++) {
+        var box = SpectacleCalculationHelpers.copyRect(visibleFrameOfDestinationScreen);
+        box.width = Math.floor(visibleFrameOfDestinationScreen.width * sizes[i]);
+        box.height = Math.floor(visibleFrameOfDestinationScreen.height / 2.0);
+        box.y = visibleFrameOfDestinationScreen.y + Math.floor(visibleFrameOfDestinationScreen.height / 2.0) + (visibleFrameOfDestinationScreen.height % 2.0)
+        boxes.push(box);
+    }
+    
+    if (Math.abs(CGRectGetMidY(windowRect) - CGRectGetMidY(boxes[0])) <= 1.0) {
+        for (var i = 0, l = boxes.length; i < l; i++) {
+            if (SpectacleCalculationHelpers.rectCenteredWithinRect(boxes[i], windowRect)) {
+                return i < l - 1 ? boxes[i + 1] : boxes[0];
+            }
         }
     }
-    return oneQuarterRect;
+    
+    return boxes[0];
 }, "SpectacleWindowActionUpperLeft");

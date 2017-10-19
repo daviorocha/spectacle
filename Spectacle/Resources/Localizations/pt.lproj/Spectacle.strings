@@ -23,7 +23,7 @@
 /* Class = "NSMenuItem"; title = "Quit Spectacle"; ObjectID = "Isn-Og-AEv"; */
 "Isn-Og-AEv.title" = "Encerrar Spectacle";
 
-/* Class = "NSMenuItem"; title = "Left Half"; ObjectID = "Jae-vx-7ZC"; */
+/* Class = "NSMenuItem"; title = "Left"; ObjectID = "Jae-vx-7ZC"; */
 "Jae-vx-7ZC.title" = "Metade Esquerda";
 
 /* Class = "NSMenu"; title = "Spectacle Status Item"; ObjectID = "KsA-8w-wcl"; */
@@ -41,7 +41,7 @@
 /* Class = "NSMenuItem"; title = "Previous Third"; ObjectID = "bV9-Ga-jDG"; */
 "bV9-Ga-jDG.title" = "Terço Anterior";
 
-/* Class = "NSMenuItem"; title = "Right Half"; ObjectID = "cae-26-Oab"; */
+/* Class = "NSMenuItem"; title = "Right"; ObjectID = "cae-26-Oab"; */
 "cae-26-Oab.title" = "Metade Direita";
 
 /* Class = "NSMenuItem"; title = "Fullscreen"; ObjectID = "dwQ-Bl-nEL"; */
@@ -62,7 +62,7 @@
 /* Class = "NSMenuItem"; title = "Make Smaller"; ObjectID = "gTe-ym-DB0"; */
 "gTe-ym-DB0.title" = "Diminuir";
 
-/* Class = "NSMenuItem"; title = "Bottom Half"; ObjectID = "huV-Gw-lbX"; */
+/* Class = "NSMenuItem"; title = "Bottom"; ObjectID = "huV-Gw-lbX"; */
 "huV-Gw-lbX.title" = "Metade Inferior";
 
 /* Class = "NSButtonCell"; title = "Open System Preferences"; ObjectID = "iPl-AT-Pei"; */
@@ -89,5 +89,5 @@
 /* Class = "NSMenuItem"; title = "Center"; ObjectID = "xJu-Uo-nZw"; */
 "xJu-Uo-nZw.title" = "Centralizar";
 
-/* Class = "NSMenuItem"; title = "Top Half"; ObjectID = "yh0-ik-weD"; */
+/* Class = "NSMenuItem"; title = "Top"; ObjectID = "yh0-ik-weD"; */
 "yh0-ik-weD.title" = "Metade Superior";

@@ -1,17 +1,26 @@
 windowPositionCalculationRegistry.registerWindowPositionCalculationWithAction(function (windowRect, visibleFrameOfSourceScreen, visibleFrameOfDestinationScreen) {
-    var oneHalfRect = SpectacleCalculationHelpers.copyRect(visibleFrameOfDestinationScreen);
-    oneHalfRect.height = Math.floor(oneHalfRect.height / 2.0);
-    if (Math.abs(CGRectGetMidX(windowRect) - CGRectGetMidX(oneHalfRect)) <= 1.0) {
-        var twoThirdsRect = SpectacleCalculationHelpers.copyRect(oneHalfRect);
-        twoThirdsRect.height = Math.floor(visibleFrameOfDestinationScreen.height * 2 / 3.0);
-        if (SpectacleCalculationHelpers.rectCenteredWithinRect(oneHalfRect, windowRect)) {
-            return twoThirdsRect;
-        }
-        if (SpectacleCalculationHelpers.rectCenteredWithinRect(twoThirdsRect, windowRect)) {
-            var oneThirdRect = SpectacleCalculationHelpers.copyRect(oneHalfRect);
-            oneThirdRect.height = Math.floor(visibleFrameOfDestinationScreen.height / 3.0);
-            return oneThirdRect;
+    var sizes = [
+                 1 / 2,
+                 2 / 3,
+                 3 / 4,
+                 1 / 4,
+                 1 / 3,
+                 ];
+    
+    var boxes = [];
+    for (var i = 0, l = sizes.length; i < l; i++) {
+        var box = SpectacleCalculationHelpers.copyRect(visibleFrameOfDestinationScreen);
+        box.height = Math.floor(visibleFrameOfDestinationScreen.height * sizes[i]);
+        boxes.push(box);
+    }
+    
+    if (Math.abs(CGRectGetMidX(windowRect) - CGRectGetMidX(boxes[0])) <= 1.0) {
+        for (var i = 0, l = boxes.length; i < l; i++) {
+            if (SpectacleCalculationHelpers.rectCenteredWithinRect(boxes[i], windowRect)) {
+                return i < l - 1 ? boxes[i + 1] : boxes[0];
+            }
         }
     }
-    return oneHalfRect;
+    
+    return boxes[0];
 }, "SpectacleWindowActionBottomHalf");
